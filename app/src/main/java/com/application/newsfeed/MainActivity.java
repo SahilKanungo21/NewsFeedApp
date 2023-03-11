@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar mtoolBar;
 
     private boolean filterConditions(int tabPos) {
-        return tabPos==0 || tabPos==1 || tabPos==2 || tabPos==3 || tabPos==4 || tabPos ==5;
+        return (tabPos==0) || (tabPos==1) || (tabPos==2) || (tabPos==3) || (tabPos==4) || (tabPos ==5);
     }
 
     @Override
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                if(filterConditions(tab.getPosition())) {
+                int tabPos = tab.getPosition();
+                if(filterConditions(tabPos)) {
                     pagerAdapter.notifyDataSetChanged();
                 }
             }
