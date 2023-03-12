@@ -30,7 +30,7 @@ public class HealthFragment extends Fragment {
 
     ArrayList<Model> newsContentList;
     Adapter adapter;
-    String country="in";
+    String country = "in";
     private RecyclerView recyclerViewOfHealth;
     private String Category = "health";
 
@@ -39,11 +39,11 @@ public class HealthFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         @SuppressLint("InflateParams")
-        View view = inflater.inflate(R.layout.health_fragment,null);
-        recyclerViewOfHealth=view.findViewById(R.id.recyclerviewofhealth);
+        View view = inflater.inflate(R.layout.health_fragment, null);
+        recyclerViewOfHealth = view.findViewById(R.id.recyclerviewofhealth);
         newsContentList = new ArrayList<>();
         recyclerViewOfHealth.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter=new Adapter(getContext(),newsContentList);
+        adapter = new Adapter(getContext(), newsContentList);
         recyclerViewOfHealth.setAdapter(adapter);
 
         findNews();
@@ -51,11 +51,11 @@ public class HealthFragment extends Fragment {
     }
 
     private void findNews() {
-        ApiUtilities.getApiInterface().getNewsByCategory(country,Category,100,API_KEY).enqueue(new Callback<NewsPojo>() {
+        ApiUtilities.getApiInterface().getNewsByCategory(country, Category, 100, API_KEY).enqueue(new Callback<NewsPojo>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<NewsPojo> call, @NonNull Response<NewsPojo> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     assert response.body() != null;
                     newsContentList.addAll(response.body().getArticles());
                     adapter.notifyDataSetChanged();

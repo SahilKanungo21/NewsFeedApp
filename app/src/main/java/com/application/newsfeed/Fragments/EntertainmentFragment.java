@@ -30,7 +30,7 @@ public class EntertainmentFragment extends Fragment {
 
     ArrayList<Model> newsContentList;
     Adapter adapter;
-    String country="in";
+    String country = "in";
     private RecyclerView recyclerViewOfEntertainment;
     private String Category = "entertainment";
 
@@ -38,11 +38,11 @@ public class EntertainmentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         @SuppressLint("InflateParams")
-        View view = inflater.inflate(R.layout.entertainment_fragment,null);
-        recyclerViewOfEntertainment=view.findViewById(R.id.recyclerviewofentertainment);
+        View view = inflater.inflate(R.layout.entertainment_fragment, null);
+        recyclerViewOfEntertainment = view.findViewById(R.id.recyclerviewofentertainment);
         newsContentList = new ArrayList<>();
         recyclerViewOfEntertainment.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter=new Adapter(getContext(),newsContentList);
+        adapter = new Adapter(getContext(), newsContentList);
         recyclerViewOfEntertainment.setAdapter(adapter);
 
         findNews();
@@ -50,11 +50,11 @@ public class EntertainmentFragment extends Fragment {
     }
 
     private void findNews() {
-        ApiUtilities.getApiInterface().getNewsByCategory(country,Category,100,API_KEY).enqueue(new Callback<NewsPojo>() {
+        ApiUtilities.getApiInterface().getNewsByCategory(country, Category, 100, API_KEY).enqueue(new Callback<NewsPojo>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<NewsPojo> call, @NonNull Response<NewsPojo> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     assert response.body() != null;
                     newsContentList.addAll(response.body().getArticles());
                     adapter.notifyDataSetChanged();

@@ -20,8 +20,8 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        toolbar=findViewById(R.id.toolbar1);
-        webView=findViewById(R.id.webview);
+        toolbar = findViewById(R.id.toolbar1);
+        webView = findViewById(R.id.webview);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();

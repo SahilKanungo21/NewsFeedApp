@@ -26,14 +26,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     ArrayList<Model> newsContentList;
 
     public Adapter(Context context, ArrayList<Model> newsContentList) {
-        this.context=context;
-        this.newsContentList=newsContentList;
+        this.context = context;
+        this.newsContentList = newsContentList;
     }
 
     @NonNull
     @Override
     public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_item,null,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_item, null, false);
         return new ViewHolder(view);
     }
 
@@ -44,12 +44,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("url",newsContentList.get(position).getUrl());
+                intent.putExtra("url", newsContentList.get(position).getUrl());
                 context.startActivity(intent);
             }
         });
 
-        holder.mTime.setText(" Published At:- "+newsContentList.get(position).getPublishedAt());
+        holder.mTime.setText(" Published At:- " + newsContentList.get(position).getPublishedAt());
         holder.mAuthor.setText(newsContentList.get(position).getAuthor());
         holder.mHeading.setText(newsContentList.get(position).getTitle());
         holder.mContent.setText(newsContentList.get(position).getDescription());
@@ -62,18 +62,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mHeading,mContent,mAuthor,mTime;
+        TextView mHeading, mContent, mAuthor, mTime;
         CardView cardView;
         ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mHeading=itemView.findViewById(R.id.mainHeading);
-            mContent=itemView.findViewById(R.id.content);
-            mAuthor=itemView.findViewById(R.id.author);
-            mTime=itemView.findViewById(R.id.publishedAt);
-            imageView=itemView.findViewById(R.id.imageView);
-            cardView=itemView.findViewById(R.id.cardView);
+            mHeading = itemView.findViewById(R.id.mainHeading);
+            mContent = itemView.findViewById(R.id.content);
+            mAuthor = itemView.findViewById(R.id.author);
+            mTime = itemView.findViewById(R.id.publishedAt);
+            imageView = itemView.findViewById(R.id.imageView);
+            cardView = itemView.findViewById(R.id.cardView);
         }
     }
 }

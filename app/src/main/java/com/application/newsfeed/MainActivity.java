@@ -4,27 +4,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.application.newsfeed.Fragments.PagerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
-    TabItem mhome , msports , mhealth, mscience , mtechnology, mentertainment;
+    TabItem mhome, msports, mhealth, mscience, mtechnology, mentertainment;
     PagerAdapter pagerAdapter;
     Toolbar mtoolBar;
 
+    FloatingActionButton fab;
+
     private boolean filterConditions(int tabPos) {
-        return (tabPos==0) || (tabPos==1) || (tabPos==2) || (tabPos==3) || (tabPos==4) || (tabPos ==5);
+        return (tabPos == 0) || (tabPos == 1) || (tabPos == 2) || (tabPos == 3) || (tabPos == 4) || (tabPos == 5);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fab = findViewById(R.id.fab);
 
         mtoolBar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolBar);
@@ -39,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.fragmentcontainer);
         tabLayout = findViewById(R.id.include);
 
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),6);
+        fab.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(), "AI CHAT BOT",
+                    Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, ChatBotActivity.class));
+        });
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 6);
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -47,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 int tabPos = tab.getPosition();
-                if(filterConditions(tabPos)) {
+                if (filterConditions(tabPos)) {
                     pagerAdapter.notifyDataSetChanged();
                 }
             }
