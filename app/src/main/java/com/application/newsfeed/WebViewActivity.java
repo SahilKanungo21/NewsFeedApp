@@ -14,18 +14,20 @@ public class WebViewActivity extends AppCompatActivity {
     Toolbar toolbar;
     WebView webView;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "SetJavaScriptEnabled"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        toolbar=findViewById(R.id.toolbar);
+        toolbar=findViewById(R.id.toolbar1);
         webView=findViewById(R.id.webview);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
+
+        webView.getSettings().setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
