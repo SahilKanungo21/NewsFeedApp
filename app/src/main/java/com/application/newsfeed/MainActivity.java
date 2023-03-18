@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fab = findViewById(R.id.fab);
-
         mtoolBar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolBar);
 
@@ -45,12 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = findViewById(R.id.fragmentcontainer);
         tabLayout = findViewById(R.id.include);
-
-        fab.setOnClickListener(view -> {
-            Toast.makeText(getApplicationContext(), "AI CHAT BOT",
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, ChatBotActivity.class));
-        });
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 6);
         viewPager.setAdapter(pagerAdapter);
